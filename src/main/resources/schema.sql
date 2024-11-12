@@ -1,0 +1,38 @@
+-- 실제 서비스와 유사한 테이블 정규화를 고려 하였으나 API 구현 요건 최적화에는 적합하지 않아 요건에 적합 하도록 정규화 시킴
+
+CREATE TABLE IF NOT EXISTS categories (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(50) NOT NULL UNIQUE,
+	display_order INT DEFAULT 0,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	is_active BOOLEAN NOT NULL DEFAULT true
+	
+	-- 데이터 건수가 매우 적을 것으로 예상 되어 인덱스를 생성하지 않는 것이 성능에 더 유리하다고 판단
+);
+
+CREATE TABLE IF NOT EXISTS brands (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(50) NOT NULL UNIQUE,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	is_active BOOLEAN NOT NULL DEFAULT true
+);
+
+CREATE INDEX IF NOT EXISTS idx_brand_name ON brands (name);
+
+CREATE TABLE IF NOT EXISTS products (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	brand_id BIGINT NOT NULL,
+	category_id BIGINT NOT NULL,
+	price INT NOT NULL,
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	is_active BOOLEAN NOT NULL DEFAULT true,
+	
+	FOREIGN KEY (brand_id) REFERENCES brands(id) ON DELETE CASCADE,
+	FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS idx_brand_category ON products (brand_id, category_id);
+CREATE INDEX IF NOT EXISTS idx_price ON products (price);
