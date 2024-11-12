@@ -68,7 +68,7 @@ public class ProductService {
 		List<Product> productList = productRepo.findLowestPriceBrandProductsOrderByDisplayOrder();
 		
 		// 모든 카테고리 상품이 존재하는 브랜드가 한개도 없는 경우
-		if (productList.size() == 0) {
+		if (productList.isEmpty()) {
 			throw new NotFoundException("카테고리별 최저가 브랜드 상품을 찾을 수 없습니다.");
 		}
 		
@@ -108,7 +108,7 @@ public class ProductService {
 	public CategoryPriceRangeDTO getCategoryPriceRange(String categoryName) {
 		List<Product> lowestList = productRepo.findLowestPriceProductByCategoryName(categoryName);
 		
-		if (lowestList.size() == 0) {
+		if (lowestList.isEmpty()) {
 			throw new NotFoundException("카테고리에 상품이 없습니다.");
 		}
 		

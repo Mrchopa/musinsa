@@ -22,17 +22,20 @@ MUSINSA Coding Test 프로젝트는 의류 카테고리별 최저 가격 조회 
 ./gradle build
 ./gradle bootRun
 ```
-#### container build & run
+#### docker build & run
 ```shell
-docker build -f .
-docker start
+docker build -t musinsa-coordination .
+docker run -p 8080:8080 musinsa-coordination
+```
+#### docker-compose build & run
+```shell
+docker-compose up --build
 ```
 ### 3. 테스트  실행
 ```shell
 ./gradle test
 ```
-
 ## 추가 정보
 - H2 DB를 사용하고, 실행 시 초기 데이터가 로드됩니다. (resources/schema.sql, resources/data.sql)
-- API 문서는 OAS 문서로 제공됩니다. (/swagger-ui/index.html)
+- API 문서는 OAS 문서로 제공됩니다. (localhost:8080/swagger-ui/index.html)
 - Virtual thread가 활성화 되어 있습니다. (JRE 21 환경에서 default)

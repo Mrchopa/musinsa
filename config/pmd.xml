@@ -598,7 +598,7 @@ for (int i = 0, j = 0; i < 10; i++, j += 2) {
 ]]>
         </example>
     </rule>
-
+<!--
     <rule name="GuardLogStatement"
           language="java"
           since="5.1.0"
@@ -637,7 +637,7 @@ log.debug("log something expensive: {}", this::calculateExpensiveLoggingText);
 ]]>
         </example>
     </rule>
-
+-->
     <rule name="JUnit4SuitesShouldUseSuiteAnnotation"
           language="java"
           since="4.0"

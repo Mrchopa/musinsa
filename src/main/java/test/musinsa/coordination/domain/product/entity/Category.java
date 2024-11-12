@@ -13,7 +13,18 @@ public class Category extends BaseModel {
     private String name;
     private int displayOrder;
     
-    public String getName() {
+    public Category() {
+    	super();
+    }
+    
+    public Category(String name, int displayOrder) {
+    	super();
+    	
+		this.name = name;
+		this.displayOrder = displayOrder;
+	}
+
+	public String getName() {
         return name;
     }
     

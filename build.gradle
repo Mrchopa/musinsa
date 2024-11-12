@@ -16,6 +16,10 @@ java {
 	}
 }
 
+springBoot {
+	mainClass = 'test.musinsa.coordination.CoordinationApplication'
+}
+
 checkstyle {
     toolVersion = '10.20.1'
     showViolations = false
@@ -24,6 +28,7 @@ checkstyle {
 
 pmd {
 	toolVersion = '7.7.0'
+	sourceSets = [sourceSets.main]
 	rulesMinimumPriority = 3
 	ruleSetFiles = files('./config/pmd.xml')
 }

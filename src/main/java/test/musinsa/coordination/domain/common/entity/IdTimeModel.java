@@ -25,4 +25,8 @@ public abstract class IdTimeModel extends BaseTimeModel {
     public Long getId() {
         return id;
     }
+    
+    public void setId(long id) {
+    	this.id = id;
+    }
 }
